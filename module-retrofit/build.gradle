@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion deps.versions.compileSdkVersion
+
+
+
+    defaultConfig {
+        minSdkVersion deps.versions.minSdkVersion
+        targetSdkVersion deps.versions.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.retrofit.okhttp
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.converter_gson
+    implementation deps.retrofit.adapter_rxjava2
+    implementation deps.retrofit.rxjava
+    implementation deps.retrofit.rxandroid
+    implementation deps.retrofit.gson
+}

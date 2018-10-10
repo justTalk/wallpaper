@@ -1,0 +1,20 @@
+include ':app', ':module-retrofit'
+
+
+
+
+def getExternalModuleDir(String moduleDir) {
+//    println("moduleDir === " + moduleDir)
+    //加载资源
+    Properties properties = new Properties()
+    InputStream inputStream = new File(rootDir.absolutePath + '/local.properties').newDataInputStream()
+    properties.load(inputStream )
+
+    def public_module_path = properties.getProperty("module.dir", null)
+    if (public_module_path == null) {
+        throw new GradleException("Module location not found. Define location with module.dir in the local.properties file!")
+    }
+//    println("public_module_path === " + public_module_path)
+//    println("public_module_path === " + public_module_path + moduleDir)
+    return public_module_path + moduleDir
+}
